@@ -1,4 +1,22 @@
+body, html {
+    padding: 0;
+    margin: 0;
+}
 #editor {
-    width: 50%;
+    display: inline-block;
+    width: 45%;
     height: 600px;
+    position: relative;
+    padding: 0;
+    border: 0;
+    margin: 0;
+}
+#stage {
+    background-color: #eee;
+    display: inline-block;
+    width: 45%;
+    height: 600px;
+    padding: 0;
+    border: 0;
+    margin: 0 0 0 2%;
 }
