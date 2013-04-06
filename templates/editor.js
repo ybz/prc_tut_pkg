@@ -17,7 +17,7 @@
 
             setStageContent : function setStageContent(content) {
                 var ifr = this.findIFrame();
-                var doc = ifr.contentWindow.document
+                var doc = ifr.contentWindow.document;
                 doc.open('text/html', 'replace');
                 doc.write(content);
                 doc.close();
