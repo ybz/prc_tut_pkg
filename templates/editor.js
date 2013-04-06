@@ -1,8 +1,9 @@
 (function(obj) {
     $(function() {
         var editor = ace.edit("editor");
-        editor.setTheme("ace/theme/monokai");
+        editor.setTheme("ace/theme/github");
         editor.getSession().setMode("ace/mode/html");
+        editor.renderer.setShowGutter(false);
 
         var ns = {
             loadPageInEditor : function loadPageInEditor(code) {
@@ -27,7 +28,16 @@
                     throw new Error('missing page code');
                 }
                 this.loadPageInEditor(params.page_code);
+            },
+
+            getPageContent : function getPageContent() {
+                return this.editor.getValue()
+            },
+
+            updateStageFromPage : function updateStageFromPage() {
+                this.setStageContent(this.getPageContent());
             }
+
         };
         ns.editor = editor;
 
