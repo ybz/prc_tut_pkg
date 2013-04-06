@@ -6,6 +6,7 @@
         editor.renderer.setShowGutter(false);
 
         var ns = {
+            auto_update : true,
             loadPageInEditor : function loadPageInEditor(code) {
                 editor.setValue(code);
             },
@@ -36,10 +37,31 @@
 
             updateStageFromPage : function updateStageFromPage() {
                 this.setStageContent(this.getPageContent());
+            },
+
+            setupAutoUpdate : function setupAutoUpdate(change_interval) {
+                var timer;
+                var that = this;
+                clear_timer = function() {
+                    if (timer) {
+                        clearTimeout(timer);
+                        timer = null;
+                    }
+                };
+                change_func = function() {
+                    clear_timer();
+                    that.updateStageFromPage();
+                };
+                setup_change_timer = function() {
+                    clear_timer();
+                    timer = setTimeout(change_func, change_interval);
+                };
+                editor.on('change', setup_change_timer);
             }
 
         };
         ns.editor = editor;
+        ns.setupAutoUpdate(750);
 
         obj.pp = ns;
     });
