@@ -13,9 +13,12 @@
         var ns = {
             auto_update : true,
             loadCodeInEditor : function loadCodeInEditor(code) {
+                var that = this;
                 code_editor.setValue(code);
                 code_editor.clearSelection();
-                code_editor.getSession().on("change", this.considerRemoveMarkers);
+                code_editor.getSession().on("change", function() {
+                    that.considerRemoveMarkers();
+                });
             },
 
             findIFrame : function findIFrame() {
@@ -33,6 +36,7 @@
             loadPage : function loadPage(params) {
                 params = params || {};
                 auto_remove = false;
+                this.removeMarkers();
                 if (!(params.code && params.code.content)) {
                     throw new Error('missing page code');
                 }
@@ -63,15 +67,19 @@
                 title_el.toggleClass('rtl', rtl);
             },
 
-            considerRemoveMarkers : function removeMarkers() {
-                if (!auto_remove) {
-                    return
-                }
+            removeMarkers : function removeMarkers() {
                 session = code_editor.getSession();
                 for (var i=0; i < current_markers.length; i++) {
                     session.removeMarker(current_markers[i]);
                 }
                 current_markers = [];
+            },
+
+            considerRemoveMarkers : function considerRemoveMarkers() {
+                if (!auto_remove) {
+                    return
+                }
+                this.removeMarkers();
             },
 
             loadCodeMarkers :  function loadCodeMarkers(markers_list) {
@@ -118,6 +126,7 @@
         ns.code_editor = code_editor;
         ns.setupAutoUpdate(750);
 
-        obj.pp = ns;
+        obj.pres_tools = obj.pres_tools || {};
+        obj.pres_tools.presenter = ns;
     });
 })(window);

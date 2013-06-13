@@ -3,10 +3,22 @@
     <head>
         <title></title>
         <link rel="stylesheet" href="./presenter.css">
+        <link rel="stylesheet" href="./navigator.css">
         <script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="./navigator.js"></script>
         <script src="./presenter.js"></script>
         <script src="./test_lesson.js" charset="utf-8"></script>
+        <script type="text/javascript">
+            $(function() {
+                window.pres_nav = new window.pres_tools.Navigator(
+                    $('.nav_root'),
+                    window.pres_tools.presenter
+                );
+                window.pres_nav.loadLessonData(test_lesson);
+                window.pres_nav.navigateTo(0);
+            });
+        </script>
     </head>
     <body>
         <div class="instruction_text">
@@ -16,5 +28,7 @@
             <div id="code_editor"></div>
             <iframe id="stage" src="about:blank"></iframe>
         </div>
+        <div class="nav_root"></div>
+        <div class="status_bar_root"></div>
     </body>
 </html>

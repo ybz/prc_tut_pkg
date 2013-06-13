@@ -2,7 +2,10 @@ window.test_lesson = {
     stages : [
         {
             code : {
-                content : "<html></html>"
+                content : "<html></html>",
+                markers : [
+                    [0, 0, 0, 14]
+                ]
             },
             title : {
                 content : "Stage 1"
@@ -12,8 +15,7 @@ window.test_lesson = {
             code : {
                 content : "<html><head></head></html>",
                 markers : [
-                    [0, 2, 0, 4],
-                    [0, 6, 0, 9]
+                    [0, 6, 0, 19]
                 ]
             },
             title : {
@@ -23,7 +25,10 @@ window.test_lesson = {
         },
         {
             code : {
-                content : "<html><head></head><body></body></html>"
+                content : "<html><head></head><body></body></html>",
+                markers : [
+                    [0, 19, 0, 32]
+                ]
             },
             title : {
                 content : "נוסיף אלמנט גוף",

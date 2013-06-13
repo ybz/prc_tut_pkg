@@ -1,0 +1,35 @@
+.navigator {
+    text-align: center;
+}
+.navigator .controls,
+.navigator .controls .button,
+.navigator .controls ul,
+.navigator .controls li {
+    display: inline-block;
+}
+.navigator .controls {
+    padding-bottom: 10px;
+}
+.navigator .controls ul {
+    padding: 0;
+    margin: 0 8px;
+}
+.navigator .controls.rtl ul {
+    direction: rtl;
+}
+.navigator .controls li {
+    cursor: pointer;
+    background-color: #f90;
+    border-radius: 5px;
+    width: 10px;
+    height: 10px;
+    margin: 0 4px;
+}
+.navigator .controls li.current {
+    background-color: #55a;
+}
+.navigator .controls .button {
+    cursor: pointer;
+    color: #b50;
+    font-weight: 700;
+}
