@@ -6,19 +6,34 @@ body, html {
 .instruction_text {
     background-color: #f0f0e7;
     min-height: 150px;
+    direction: ltr;
+    text-align: left;
+}
+.instruction_text.rtl {
+    direction: rtl;
+    text-align: right;
+}
+.instruction_text .content {
+    padding: 30px;
 }
 .edit_bar {
     width: 100%;
     position: relative;
     margin-top: 20px;
 }
-#editor {
+#code_editor {
     display: block;
     height: 500px;
     position: relative;
     padding: 0;
     border: 0;
     margin: 0 520px 0 10px;
+}
+#code_editor .ace_marker-layer .lesson_marker {
+    position: absolute;
+    background-color: rgba(200, 200, 90, 0.4);
+    border: 1px solid rgba(150, 150, 250, 0.5);
+    z-index: 2;
 }
 #stage {
     display: inline-block;
