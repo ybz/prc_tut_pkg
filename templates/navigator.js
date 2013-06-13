@@ -26,6 +26,7 @@
             this.lesson_data = lesson_data;
             this.updateNavDir();
             this.updateControls();
+            this.navigateTo(0);
         },
         updateNavDir : function updateNavDir() {
             this.nav_rtl = false;
