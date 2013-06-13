@@ -13,13 +13,18 @@
 
         var ns = {
             auto_update : true,
-            loadCodeInEditor : function loadCodeInEditor(code) {
+            loadCodeInEditor : function loadCodeInEditor(code, params) {
                 var that = this;
+                if (!params) {
+                    params = {};
+                }
                 code_editor.setValue(code);
                 code_editor.clearSelection();
                 code_editor.getSession().on("change", function() {
                     that.considerRemoveMarkers();
                 });
+                scroll_row = params.scroll_row || 0;
+                code_editor.scrollToRow(scroll_row);
             },
 
             findIFrameWrapper : function findIFrameWrapper() {
@@ -129,7 +134,7 @@
 
         };
         ns.code_editor = code_editor;
-        ns.setupAutoUpdate(750);
+        ns.setupAutoUpdate(250);
 
         obj.pres_tools = obj.pres_tools || {};
         obj.pres_tools.presenter = ns;
