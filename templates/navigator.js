@@ -1,4 +1,6 @@
 (function(obj) {
+    var LEFT_ARROW = 37;
+    var RIGHT_ARROW = 39;
     var Navigator = function Navigator(element, presenter) {
         that = this;
         this.$el = el = $(element);
@@ -14,6 +16,9 @@
         });
         this.$controls.on('click', '.button', function(ev) {
             that.onButtonClick(ev);
+        });
+        $(document).on('keydown', function(ev) {
+            that.onKeyDown(ev);
         });
     };
     Navigator.prototype = {
@@ -56,15 +61,8 @@
             items.removeClass('current');
             items.eq(index).addClass('current');
         },
-        onItemClick : function onItemClick(ev) {
-            var item = $(ev.currentTarget);
-            var all_items = this.$controls.find('li');
-            var index = all_items.index(item);
-            this.navigateTo(index);
-        },
-        onButtonClick : function onButtonClick(ev) {
-            button = $(ev.currentTarget);
-            var dir = button.hasClass('prev') ? -1 : 1
+        navigateRelative : function navigateRelative(named_dir) {
+            var dir = named_dir == 'left' ? -1 : 1;
             if (this.nav_rtl) {
                 dir *= -1;
             }
@@ -76,6 +74,27 @@
                 new_index = 0;
             }
             this.navigateTo(new_index);
+        },
+        onItemClick : function onItemClick(ev) {
+            var item = $(ev.currentTarget);
+            var all_items = this.$controls.find('li');
+            var index = all_items.index(item);
+            this.navigateTo(index);
+        },
+        onButtonClick : function onButtonClick(ev) {
+            button = $(ev.currentTarget);
+            var dir = button.hasClass('prev') ? 'left' : 'right'
+            this.navigateRelative(dir);
+        },
+        onKeyDown : function onKeyDown(ev) {
+            if (ev.ctrlKey) {
+                if (ev.keyCode == LEFT_ARROW) {
+                    this.navigateRelative('left');
+                }
+                if (ev.keyCode == RIGHT_ARROW) {
+                    this.navigateRelative('right');
+                }
+            }
         }
     };
     obj.pres_tools = obj.pres_tools || {};
