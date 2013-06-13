@@ -6,6 +6,7 @@
         var LESSON_MARKER_CLASS = "lesson_marker";
         var current_markers = [];
         var auto_remove;
+        var iframe_running_id = 1;
         code_editor.setTheme("ace/theme/github");
         code_editor.getSession().setMode("ace/mode/html");
         code_editor.renderer.setShowGutter(false);
@@ -21,16 +22,20 @@
                 });
             },
 
-            findIFrame : function findIFrame() {
-                return $('#stage')[0]
+            findIFrameWrapper : function findIFrameWrapper() {
+                return $('.stage_wrapper')
             },
 
             setStageContent : function setStageContent(content) {
-                var ifr = this.findIFrame();
-                var doc = ifr.contentWindow.document;
+                wrapper = this.findIFrameWrapper();
+                wrapper.empty();
+                iframe = $('<iframe id="stage_' + this.iframe_running_id + '" src="about:blank"></iframe>');
+                wrapper.append(iframe);
+                var doc = iframe[0].contentWindow.document;
                 doc.open('text/html', 'replace');
                 doc.write(content);
                 doc.close();
+                iframe_running_id += 1;
             },
 
             loadPage : function loadPage(params) {

@@ -35,11 +35,9 @@ body, html {
     border: 1px solid rgba(60, 190, 60, 0.9);
     z-index: 2;
 }
-#stage {
-    display: inline-block;
+.stage_wrapper {
     width: 500px;
     height: 500px;
-    position: absolute;
     right: 0;
     top: 0;
     padding: 0;
@@ -47,6 +45,14 @@ body, html {
     border-color: #ccc;
     border-style: solid;
     margin: 0 10px 0 0;
+    display: inline-block;
+    position: absolute;
+}
+.stage_wrapper iframe {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 .nav_root {

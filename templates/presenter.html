@@ -9,13 +9,14 @@
         <script src="./navigator.js"></script>
         <script src="./presenter.js"></script>
         <script src="./test_lesson.js" charset="utf-8"></script>
+        <script src="./array_lesson.js" charset="utf-8"></script>
         <script type="text/javascript">
             $(function() {
                 window.pres_nav = new window.pres_tools.Navigator(
                     $('.nav_root'),
                     window.pres_tools.presenter
                 );
-                window.pres_nav.loadLessonData(test_lesson);
+                window.pres_nav.loadLessonData(array_lesson);
                 window.pres_nav.navigateTo(0);
             });
         </script>
@@ -26,7 +27,7 @@
         </div>
         <div class="edit_bar">
             <div id="code_editor"></div>
-            <iframe id="stage" src="about:blank"></iframe>
+            <div class="stage_wrapper"></dv>
         </div>
         <div class="nav_root"></div>
         <div class="status_bar_root"></div>
